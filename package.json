@@ -1,0 +1,16 @@
+{
+  "name": "manual-case-study",
+  "author": "Hass Mohammed",
+  "main": "src/app.js",
+  "description": "Manual Case Study for ED questionnaire",
+  "version": "1.0.1",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mysql2": "^3.11.3",
+    "sequelize": "^6.37.5"
+  }
+}
