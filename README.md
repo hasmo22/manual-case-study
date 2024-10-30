@@ -1,6 +1,8 @@
 ## Manual Case Study
 ### API for running a questionnaire in the Erectile Dysfunction (ED) category
 
+The application is developed with Node.js and express. It is running on an AWS EC2 instance with MySQL on RDS.
+
 ### Installation
 1. Clone the repo
 2. CD into the directory and run ```npm install```
@@ -98,5 +100,5 @@ In order to run the tests, you can run the following command:
 npm test
 ```
 
-<img width="552" alt="Screenshot 2024-10-30 at 22 46 27" src="https://github.com/user-attachments/assets/152777c5-18fd-4017-af65-96393bd26dd8">
+<img width="519" alt="Screenshot 2024-10-30 at 22 48 04" src="https://github.com/user-attachments/assets/0f6ef02a-221d-4be4-bc12-2144a93c1298">
 
