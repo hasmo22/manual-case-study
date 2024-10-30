@@ -99,6 +99,4 @@ In order to run the tests, you can run the following command:
 ```
 npm test
 ```
-
-<img width="519" alt="Screenshot 2024-10-30 at 22 48 04" src="https://github.com/user-attachments/assets/0f6ef02a-221d-4be4-bc12-2144a93c1298">
-
+<img width="621" alt="Screenshot 2024-10-30 at 23 43 31" src="https://github.com/user-attachments/assets/40a7d31a-3d70-46b4-ae1f-1016a9a592e7">
