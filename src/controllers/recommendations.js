@@ -79,7 +79,6 @@ function applyRestrictions(recommendations, restriction) {
 
     if (restriction.includes("exclude")) {
         const productToExclude = restriction.split("exclude ")[1].trim();
-        console.log('product to exclude', productToExclude)
         return recommendations.filter(product => product.toLowerCase().includes(productToExclude) === false);
     }
     return recommendations;
