@@ -90,3 +90,13 @@ Response: Will return the questionnaire data, including the questions and answer
     ]
 }
 ```
+
+### Run tests
+In order to run the tests, you can run the following command:
+
+```
+npm test
+```
+
+<img width="552" alt="Screenshot 2024-10-30 at 22 46 27" src="https://github.com/user-attachments/assets/152777c5-18fd-4017-af65-96393bd26dd8">
+
