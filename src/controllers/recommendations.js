@@ -61,8 +61,18 @@ const processAnswers = async (userAnswers) => {
  * @param {string} productToRecommend A product to recommend
  */
 function applyRecommendation(recommendations, productToRecommend) {
+    let products = {
+        'sildenafil_50': 'Sildenafil 50mg',
+        'sildenafil_100': 'Sildenafil 100mg',
+        'tadalafil_10': 'Tadalafil 10mg',
+        'tadalafil_20': 'Tadalafil 20mg'
+    };
+
+    // Product doesn't exist, skip recommendation
+    if (products.hasOwnProperty(productToRecommend) === false) return;
+
     if (recommendations.indexOf(productToRecommend) === -1) {
-        recommendations.push(productToRecommend);
+        recommendations.push(products[productToRecommend]);
     }
 }
 

@@ -20,29 +20,29 @@ const questionnaireData = {
                 { text: "Viagra or Sildenafil", recommendation: null, restriction: null, nextQuestionText: "Was the Viagra or Sildenafil product you tried before effective?" },
                 { text: "Cialis or Tadalafil", recommendation: null, restriction: null, nextQuestionText: "Was the Cialis or Tadalafil product you tried before effective?"},
                 { text: "Both", recommendation: null, restriction: null, nextQuestionText: "Which is your preferred treatment?"},
-                { text: "None of the above", recommendation: "Sildenafil 50mg or Tadalafil 10mg", restriction: null, nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" }
+                { text: "None of the above", recommendation: "sildenafil_50 or tadalafil_10", restriction: null, nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" }
             ]
         },
         {
             questionText: "Was the Viagra or Sildenafil product you tried before effective?",
             answers: [
-                { text: "Yes", recommendation: "Sildenafil 50mg", restriction: "exclude tadalafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" },
-                { text: "No", recommendation: "Tadalafil 20mg", restriction: "exclude sildenafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" }
+                { text: "Yes", recommendation: "sildenafil_50", restriction: "exclude tadalafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" },
+                { text: "No", recommendation: "tadalafil_20", restriction: "exclude sildenafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" }
             ]
         },
         {
             questionText: "Was the Cialis or Tadalafil product you tried before effective?",
             answers: [
-                { text: "Yes", recommendation: "Tadalafil 10mg", restriction: "exclude sildenafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" },
-                { text: "No", recommendation: "Sildenafil 100mg", restriction: "exclude tadalafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?"}
+                { text: "Yes", recommendation: "tadalafil_10", restriction: "exclude sildenafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" },
+                { text: "No", recommendation: "sildenafil_100", restriction: "exclude tadalafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?"}
             ]
         },
         {
             questionText: "Which is your preferred treatment?",
             answers: [
-                { text: "Viagra or Sildenafil", recommendation: "Sildenafil 100mg", restriction: "exclude tadalafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" },
-                { text: "Cialis or Tadalafil", recommendation: "Tadalafil 20mg", restriction: "exclude sildenafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" },
-                { text: "None of the above", recommendation: "Sildenafil 100mg or Tadalafil 20mg", restriction: null, nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" }
+                { text: "Viagra or Sildenafil", recommendation: "sildenafil_100", restriction: "exclude tadalafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" },
+                { text: "Cialis or Tadalafil", recommendation: "tadalafil_20", restriction: "exclude sildenafil", nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" },
+                { text: "None of the above", recommendation: "sildenafil_100 or tadalafil_20", restriction: null, nextQuestionText: "Do you have, or have you ever had, any heart or neurological conditions?" }
             ]
         },
         {
