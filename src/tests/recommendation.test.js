@@ -5,7 +5,9 @@ jest.mock('../models', () => ({
     Questionnaire: {
         findOne: jest.fn()
     },
-    Question: {},
+    Question: {
+        findOne: jest.fn()
+    },
     Answer: {}
 }));
 
@@ -61,10 +63,10 @@ describe('processAnswers', () => {
         jest.clearAllMocks();
     });
 
-    it('should return recommendations based on user answers', async () => {
+    it('should return recommendations based on user answers with product codes', async () => {
         const mockAnswers = [
-            { questionId: 1, answerText: 'Answer 1', recommendation: 'Product A' },
-            { questionId: 2, answerText: 'Answer 2', recommendation: 'Product B' }
+            { questionId: 1, answerText: 'Answer 1', recommendation: 'sildenafil_50' },
+            { questionId: 2, answerText: 'Answer 2', recommendation: 'tadalafil_10' }
         ];
 
         const mockQuestion = {
@@ -72,8 +74,7 @@ describe('processAnswers', () => {
             questionText: 'Sample question?',
             Answers: mockAnswers
         };
-
-        Question.findOne = jest.fn().mockResolvedValue(mockQuestion);
+        Question.findOne.mockResolvedValue(mockQuestion);
 
         const userAnswers = [
             { question: 'Sample question?', answer: 'Answer 1' }
@@ -81,16 +82,17 @@ describe('processAnswers', () => {
 
         const recommendations = await processAnswers(userAnswers);
 
-        expect(recommendations).toEqual(['Product A']);
+        // Recommendations should be correctly mapped from product codes
+        expect(recommendations).toEqual(['Sildenafil 50mg']);
         expect(Question.findOne).toHaveBeenCalledWith({
             where: { questionText: 'Sample question?' },
             include: { model: Answer, as: 'Answers' }
         });
     });
 
-    it('should apply restrictions to recommendations', async () => {
+    it('should handle multiple recommendations and map them correctly', async () => {
         const mockAnswers = [
-            { questionId: 1, answerText: 'Answer 1', recommendation: 'Product A', restriction: 'exclude all products' }
+            { questionId: 1, answerText: 'Answer 1', recommendation: 'sildenafil_50 or tadalafil_10' }
         ];
 
         const mockQuestion = {
@@ -99,14 +101,54 @@ describe('processAnswers', () => {
             Answers: mockAnswers
         };
 
-        Question.findOne = jest.fn().mockResolvedValue(mockQuestion);
+        Question.findOne.mockResolvedValue(mockQuestion);
+
+        const userAnswers = [
+            { question: 'Sample question?', answer: 'Answer 1' }
+        ];
+        const recommendations = await processAnswers(userAnswers);
+
+        // We're expecting both products in the recommendations
+        expect(recommendations).toEqual(['Sildenafil 50mg', 'Tadalafil 10mg']);
+    });
+
+    it('should apply restrictions to exclude specific products', async () => {
+        const mockAnswers = [
+            { questionId: 1, answerText: 'Answer 1', recommendation: 'sildenafil_50', restriction: 'exclude sildenafil' }
+        ];
+
+        const mockQuestion = {
+            id: 1,
+            questionText: 'Sample question?',
+            Answers: mockAnswers
+        };
+        Question.findOne.mockResolvedValue(mockQuestion);
 
         const userAnswers = [
             { question: 'Sample question?', answer: 'Answer 1' }
         ];
 
         const recommendations = await processAnswers(userAnswers);
+        expect(recommendations).toEqual([]);
+    });
 
+    it('should exclude all products if restriction is "exclude all products"', async () => {
+        const mockAnswers = [
+            { questionId: 1, answerText: 'Answer 1', recommendation: 'sildenafil_50', restriction: 'exclude all products' }
+        ];
+
+        const mockQuestion = {
+            id: 1,
+            questionText: 'Sample question?',
+            Answers: mockAnswers
+        };
+        Question.findOne.mockResolvedValue(mockQuestion);
+
+        const userAnswers = [
+            { question: 'Sample question?', answer: 'Answer 1' }
+        ];
+
+        const recommendations = await processAnswers(userAnswers);
         // Expecting an empty array here due to the exclusion
         expect(recommendations).toEqual([]);
     });
